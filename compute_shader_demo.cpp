@@ -1,3 +1,10 @@
+/*
+***  reference:https://antongerdelan.net/opengl/compute.html
+***  instruction: create a texture and use compute shader to deal with the texture,then render the texture as normal!
+***
+*/
+
+
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
 #include <string>
@@ -35,9 +42,6 @@ int main()
       // get index in global work group i.e x,y position
         ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
   
-      //
-      // interesting stuff happens here later
-      //
         float max_x = 5.0;
         float max_y = 5.0;
         ivec2 dims = imageSize(img_output); // fetch image dimensions
@@ -102,7 +106,7 @@ int main()
         })";
 
     float vertices[] = {
-        // positions                     // texture coords
+        // positions             // texture coords
           1.0f,  1.0f, 1.0f, 1.0f, // top right
           1.0f, -1.0f, 1.0f, 0.0f, // bottom right
          -1.0f, -1.0f, 0.0f, 0.0f, // bottom left
@@ -186,7 +190,6 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
-
         processInput(window);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
